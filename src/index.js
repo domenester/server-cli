@@ -10,7 +10,8 @@ commander
 .option('-c, --create <component>', 'The component to create.')
 .action( (args) => {
   co(function * (){
-    const component = args.create.toLocaleLowerCase();
+    let component;
+    if (args.create){ component = args.create.toLocaleLowerCase(); }
     switch (component) {
       case "api": 
         const apiName = yield prompt('Api name: ');
@@ -26,6 +27,7 @@ commander
         const verb = yield prompt('Endpoint verb: ');
         yield EndpointStrategy(api, endpoint, path, verb);
       break;
+      default: console.log('Parameters required.');
     }
     process.exit(0);
   });
