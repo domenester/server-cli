@@ -1,0 +1,28 @@
+{
+  "name": "server-cli",
+  "version": "1.0.0",
+  "description": "Project to handle a server project need",
+  "main": "./index.js",
+  "scripts": {
+    "start": "npm run build && node .",
+    "build": "npm run clean && babel src -d dist && cp -a src/structure dist/",
+    "clean": "rm -rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diogo Domene",
+  "license": "ISC",
+  "bin": {
+    "server-cli": "dist/index.js"
+  },
+  "dependencies": {
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.19.0",
+    "fs-extra": "^7.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  }
+}
