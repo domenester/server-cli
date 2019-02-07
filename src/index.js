@@ -10,7 +10,8 @@ commander
 .option('-c, --create <component>', 'The component to create.')
 .action( (args) => {
   co(function * (){
-    const component = args.create.toLocaleLowerCase();
+    let component;
+    if (args.create){ component = args.create.toLocaleLowerCase(); }
     switch (component) {
       case "api": 
         const apiName = yield prompt('Api name: ');

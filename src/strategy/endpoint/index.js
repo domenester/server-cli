@@ -76,10 +76,10 @@ export default async (api, endpoint, path, verb) => {
   const newFileContentSpec = fileContentSpec
   .replace(/_nameupper_/g, splitHifenAndUpper(endpoint) )
   .replace(/_name_/g, endpoint )
-  .replace(/_apiupper_/g, splitHifenAndUpper(api) )
+  .replace(/_apiupper_/g, `${splitHifenAndUpper(api)}Api` )
   .replace(/_api_/g, api )
   .replace(/_nameupperfirstnot_/g, splitHifenAndUpperFirstNot(endpoint) )
-  .replace(/_apiupperfirstnot_/g, splitHifenAndUpperFirstNot(api) );
+  .replace(/_apiupperfirstnot_/g, `${splitHifenAndUpperFirstNot(api)}Api` );
 
   writeFileSync(
     paths.out.endpoint.fileEndpoint(api, defaultEndpointSpec),
