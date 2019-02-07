@@ -1,5 +1,5 @@
 {
-  "name": "server-cli",
+  "name": "epicall-cli",
   "version": "1.0.0",
   "description": "Project to handle a server project need",
   "main": "./index.js",
