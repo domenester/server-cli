@@ -1,0 +1,27 @@
+import {Request} from "express-serve-static-core";
+import * as winston from "winston";
+import {IEndpoint, IRequest, Verb, HandlerResponse} from "../../../endpoint/endpoint.interface";
+import { _nameupper_Validation } from "../validations/_name_.validation";
+import { endpointResponseNormalizer } from "../../../../normalizer";
+
+export default class _nameupper_ implements IEndpoint<Request, {}> {
+  public path = "/_path_";
+  public method: Verb = "_verb_";
+  public fullPath: string;
+  public bodySchema = "";
+  private logger: winston.Logger;
+  constructor(logger: winston.Logger, fatherPath: string) {
+    this.logger = logger;
+    this.fullPath = `${fatherPath}${this.path}`;
+  }
+  public handler = async (req: IRequest): Promise<HandlerResponse> => {
+    this.logger.info(`Accessing path: ${this.fullPath}`);
+
+    const validation = await _nameupper_Validation(req.parameters);
+    if (validation instanceof Error) { return validation; }
+
+    // Logic of this endpoint goes here
+
+    return endpointResponseNormalizer(null);
+  }
+}

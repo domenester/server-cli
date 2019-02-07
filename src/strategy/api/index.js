@@ -3,6 +3,10 @@ import { existsSync, renameSync, readFileSync, writeFileSync } from 'fs';
 import { copy } from 'fs-extra';
 import { splitHifenAndUpper } from '../utils/strings';
 
+export const apiExists = (name) => {
+  return existsSync(paths.out.api.root(name));
+}
+
 export default async (name) => {
 
   if (existsSync(paths.out.api.root(name))) {
@@ -33,5 +37,11 @@ export default async (name) => {
     paths.out.api.root(name)
   );
   
+  // const indexContent = readFileSync(`${paths.out.api.source()}/index.ts`, 'utf-8');
+  // const newIndexContent = indexContent
+  // .replace(/export default [/g, splitHifenAndUpper(name) )
+  // .replace(/_apipath_/g, name );
+  
+
   return;
 };

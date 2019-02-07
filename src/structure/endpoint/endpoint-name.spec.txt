@@ -1,0 +1,35 @@
+import { expect } from "chai";
+import "mocha";
+import {default as logger} from "../../../../components/logger/logger";
+import server from "../../../../server";
+import _nameupper_ from "./_name_";
+import _apiupper_ from "../_api_.api";
+import { ServiceTestApi } from "../../../../services/service-test.api";
+
+
+export const _nameupperfirstnot_ByEndpoint = async () => {
+  const _apiupperfirstnot_ = new _apiupper_(logger);
+  const _nameupperfirstnot_ = new _nameupper_(logger, _apiupperfirstnot_.path);
+  const serviceTestApiInstance = new ServiceTestApi(`${_nameupperfirstnot_.fullPath}`);
+  const response = await serviceTestApiInstance.request(
+    _nameupperfirstnot_.method, {}, {}, "Testing _nameupper_"
+  );
+  return response;
+}
+
+describe("Testing _nameupper_", async () => {
+
+  before("Starting server...", async () => {
+    await server.start();
+  });
+
+  after( async () => {
+    server.stop();
+  });
+
+  it("should contains a test", async () => {
+    const response = await _nameupperfirstnot_ByEndpoint();
+    expect(response).to.be.not.null;
+  });
+  
+});
