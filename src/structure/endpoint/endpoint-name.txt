@@ -17,11 +17,11 @@ export default class _nameupper_ implements IEndpoint<Request, {}> {
   public handler = async (req: IRequest): Promise<HandlerResponse> => {
     this.logger.info(`Accessing path: ${this.fullPath}`);
 
-    const validation = await _nameupper_Validation(req.parameters);
+    const validation = await _nameupper_Validation(req.body);
     if (validation instanceof Error) { return validation; }
 
     // Logic of this endpoint goes here
 
-    return endpointResponseNormalizer(null);
+    return endpointResponseNormalizer({});
   }
 }
