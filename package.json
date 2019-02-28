@@ -1,6 +1,6 @@
 {
   "name": "api-endpoint-cli",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "Project to handle a server project need",
   "main": "./index.js",
   "scripts": {
