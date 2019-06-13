@@ -1,3 +1,16 @@
+export const appendImportEndpoint = (endpoint, content) => {
+  return (
+    `import ${splitHifenAndUpper(endpoint)} from "./endpoints/${endpoint}";\n${content}`
+  );
+}
+
+export const pushEndpointToApi = (endpoint) => {
+  return (
+    `this.endpoints = [
+      new ${splitHifenAndUpper(endpoint)}(this.logger, this.path),`
+  );
+}
+
 export const splitHifenAndUpper = (str) => {
   const split = str.split('-');
   if (split.length < 2) return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;

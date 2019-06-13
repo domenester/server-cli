@@ -1,7 +1,7 @@
 import { paths, defaultEndpointFile, defaultEndpointValidation, defaultEndpointSpec } from '../../config';
 import { renameSync, readFileSync, writeFileSync } from 'fs';
 import { copy } from 'fs-extra';
-import { splitHifenAndUpper, splitHifenAndUpperFirstNot } from '../utils/strings';
+import { appendImportEndpoint, pushEndpointToApi, splitHifenAndUpper, splitHifenAndUpperFirstNot } from '../utils/strings';
 
 export default async (api, endpoint, path, verb) => {
 
@@ -45,6 +45,21 @@ export default async (api, endpoint, path, verb) => {
   renameSync(
     paths.out.endpoint.fileEndpoint(api, defaultEndpointFile),
     paths.out.endpoint.fileEndpoint(api, `${endpoint}.ts`),
+  );
+
+  // ####################################
+
+  const fileContentApi = readFileSync(
+    paths.out.api.root(`${api}/${api}.api.ts`), 'utf-8'
+  );
+
+  const newFileContentApi = fileContentApi
+  .replace(/this.endpoints = \[/g, pushEndpointToApi(endpoint));
+
+  writeFileSync(
+    paths.out.api.root(`${api}/${api}.api.ts`),
+    appendImportEndpoint(endpoint, newFileContentApi),
+    'utf-8'
   );
 
   // ####################################

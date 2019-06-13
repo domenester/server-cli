@@ -8,7 +8,8 @@ class _apiname_Api implements IEndpointAPI {
   private logger: winston.Logger;
   constructor(logger: winston.Logger) {
     this.logger = logger;
-    this.endpoints = [];
+    this.endpoints = [
+    ];
   }
 }
 
